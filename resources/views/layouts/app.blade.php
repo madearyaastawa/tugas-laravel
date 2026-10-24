@@ -1,36 +1,39 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ $title ?? 'Rimbun.id — Toko Tanaman Online' }}</title>
+    <meta name="description" content="Temukan tanaman hias, sukulen, dan perlengkapan tanaman untuk menghadirkan suasana alami di rumah bersama Rimbun.id.">
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+    <!-- Styles / Scripts -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen bg-stone-50 text-gray-800 antialiased">
 
-        <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-    </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
-            @include('layouts.navigation')
+    @include('components.navbar')
 
-            <!-- Page Heading -->
-            @isset($header)
-                <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endisset
+    <main>
+        @yield('content')
+    </main>
 
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
+    <footer class="bg-green-950 text-green-100">
+        <div class="mx-auto max-w-7xl px-5 py-8">
+            <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                <div>
+                    <h2 class="text-xl font-bold">Rimbun<span class="text-lime-400">.id</span></h2>
+                    <p class="mt-1 text-sm text-green-200">
+                        Hadirkan alam di setiap sudut rumah.
+                    </p>
+                </div>
+
+                <p class="text-sm text-green-300">
+                    &copy; {{ date('Y') }} Rimbun.id. Semua hak dilindungi.
+                </p>
+            </div>
         </div>
-    </body>
+    </footer>
+
+</body>
 </html>
